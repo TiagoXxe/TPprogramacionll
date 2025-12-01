@@ -56,17 +56,11 @@ public class Menu {
     private void registrarAlumno() {
         System.out.println("\n🟢 REGISTRAR NUEVO ALUMNO");
 
-        System.out.print("Nombre: ");
-        String nombre = sc.nextLine();
-
-        System.out.print("Apellido: ");
-        String apellido = sc.nextLine();
-
+        String nombre = leerTextoSoloLetras("Nombre: ");
+        String apellido = leerTextoSoloLetras("Apellido: ");
         String dni = leerDniComoString("DNI (solo números): ");
-        int legajo = leerEntero("Legajo: ");
-
-        System.out.print("Carrera: ");
-        String carrera = sc.nextLine();
+        int legajo = leerEnteroPositivo("Legajo (entero positivo): ");
+        String carrera = leerTextoSoloLetras("Carrera: ");
 
         Alumno nuevo = new Alumno(nombre, apellido, dni, legajo);
         nuevo.setCarrera(carrera);
@@ -80,7 +74,7 @@ public class Menu {
     private void buscarAlumno() {
         System.out.println("\n🔎 BUSCAR ALUMNO");
 
-        int legajo = leerEntero("Ingrese legajo: ");
+        int legajo = leerEnteroPositivo("Ingrese legajo: ");
 
         try {
             Alumno alumno = repo.buscarPorLegajo(legajo);
@@ -96,22 +90,16 @@ public class Menu {
     private void modificarAlumno() {
         System.out.println("\n✏ MODIFICAR ALUMNO");
 
-        int legajo = leerEntero("Legajo del alumno a modificar: ");
+        int legajo = leerEnteroPositivo("Legajo del alumno a modificar: ");
 
         try {
             Alumno alumno = repo.buscarPorLegajo(legajo);
             System.out.println("Alumno actual: " + alumno);
 
-            System.out.print("Nuevo nombre: ");
-            String nuevoNombre = sc.nextLine();
-
-            System.out.print("Nuevo apellido: ");
-            String nuevoApellido = sc.nextLine();
-
+            String nuevoNombre = leerTextoSoloLetras("Nuevo nombre: ");
+            String nuevoApellido = leerTextoSoloLetras("Nuevo apellido: ");
             String nuevoDni = leerDniComoString("Nuevo DNI (solo números): ");
-
-            System.out.print("Nueva carrera: ");
-            String nuevaCarrera = sc.nextLine();
+            String nuevaCarrera = leerTextoSoloLetras("Nueva carrera: ");
 
             repo.modificarAlumno(legajo, nuevoNombre, nuevoApellido, nuevoDni, nuevaCarrera);
 
@@ -126,7 +114,7 @@ public class Menu {
     private void eliminarAlumno() {
         System.out.println("\n🗑 ELIMINAR ALUMNO");
 
-        int legajo = leerEntero("Legajo del alumno a eliminar: ");
+        int legajo = leerEnteroPositivo("Legajo del alumno a eliminar: ");
 
         try {
             repo.eliminarPorLegajo(legajo);
@@ -136,17 +124,55 @@ public class Menu {
     }
 
     // ==========================
-    //  LECTURA SEGURA DE ENTEROS
+    //  LECTURA ENTERO POSITIVO
     // ==========================
-    private int leerEntero(String mensaje) {
+    private int leerEnteroPositivo(String mensaje) {
         while (true) {
             System.out.print(mensaje);
-            String input = sc.nextLine();
+            String input = sc.nextLine().trim();
+
             try {
-                return Integer.parseInt(input);
+                int valor = Integer.parseInt(input);
+                if (valor > 0) {
+                    return valor;
+                } else {
+                    System.out.println("⚠ El número debe ser mayor que cero.");
+                }
             } catch (NumberFormatException e) {
-                System.out.println("⚠ Ingrese solo números, por favor.");
+                System.out.println("⚠ Ingrese solo números enteros.");
             }
+        }
+    }
+
+    // ==========================
+    //  LECTURA DE TEXTO SOLO LETRAS
+    // ==========================
+    private String leerTextoSoloLetras(String mensaje) {
+        while (true) {
+            System.out.print(mensaje);
+            String texto = sc.nextLine().trim();
+
+            if (texto.isEmpty()) {
+                System.out.println("⚠ El campo no puede estar vacío.");
+                continue;
+            }
+
+            boolean valido = true;
+            for (int i = 0; i < texto.length(); i++) {
+                char c = texto.charAt(i);
+                // Aceptamos letras y espacio
+                if (!Character.isLetter(c) && c != ' ') {
+                    valido = false;
+                    break;
+                }
+            }
+
+            if (!valido) {
+                System.out.println("⚠ Solo se permiten letras y espacios.");
+                continue;
+            }
+
+            return texto;
         }
     }
 
@@ -173,6 +199,12 @@ public class Menu {
 
             if (!soloDigitos) {
                 System.out.println("⚠ El DNI debe contener solo números.");
+                continue;
+            }
+
+            // Opcional: validar longitud (7 u 8 dígitos)
+            if (dni.length() < 7 || dni.length() > 8) {
+                System.out.println("⚠ El DNI debe tener entre 7 y 8 dígitos.");
                 continue;
             }
 
