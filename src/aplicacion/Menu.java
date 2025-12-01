@@ -130,6 +130,65 @@ public class Menu {
     }
 
     // ==========================
+    //  OPCIÓN 6: CARGAR CALIFICACIÓN A UN ALUMNO
+    // ==========================
+    private void cargarCalificacionAlumno() {
+        System.out.println("\n📝 CARGAR CALIFICACIÓN A UN ALUMNO");
+
+        int legajo = leerEnteroPositivo("Legajo del alumno: ");
+
+        try {
+            Alumno alumno = repo.buscarPorLegajo(legajo);
+            System.out.println("Alumno encontrado: " + alumno);
+
+            // mensaje limpio:
+            String materia = leerMateriaValida("Materia: ");
+            double nota = leerNotaValida("Nota (0 a 10, puede ser decimal): ");
+
+            Calificacion calificacion = new Calificacion(materia, nota);
+            alumno.agregarCalificacion(calificacion);
+
+            System.out.println("✅ Calificación registrada correctamente.");
+
+        } catch (AlumnoNoEncontradoException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    // ==========================
+    //  OPCIÓN 8: VER MATERIAS Y NOTAS DE UN ALUMNO
+    // ==========================
+    private void verMateriasYNotasDeAlumno() {
+        System.out.println("\n📚 VER MATERIAS Y NOTAS DE UN ALUMNO");
+
+        int legajo = leerEnteroPositivo("Legajo del alumno: ");
+
+        try {
+            Alumno alumno = repo.buscarPorLegajo(legajo);
+
+            System.out.println("\n👤 Alumno: " + alumno);
+
+            var calificaciones = alumno.getCalificaciones();
+
+            if (calificaciones.isEmpty()) {
+                System.out.println("📭 Este alumno todavía no tiene materias cargadas.");
+                return;
+            }
+
+            System.out.println("\n📋 MATERIAS Y NOTAS");
+            int i = 1;
+            for (Calificacion c : calificaciones) {
+                System.out.printf("%d) %-20s | Nota: %.2f%n",
+                        i, c.getMateria(), c.getNota());
+                i++;
+            }
+
+        } catch (AlumnoNoEncontradoException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    // ==========================
     //  LECTURA ENTERO POSITIVO
     // ==========================
     private int leerEnteroPositivo(String mensaje) {

@@ -1,5 +1,7 @@
 package aplicacion;
 
+
+
 public class Persona {
 
     private String nombre;

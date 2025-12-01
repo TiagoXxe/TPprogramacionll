@@ -1,7 +1,7 @@
 package aplicacion;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Alumno extends Persona implements Comparable<Alumno> {
 
