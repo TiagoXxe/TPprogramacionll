@@ -20,7 +20,7 @@ public class Persona {
         return apellido;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
