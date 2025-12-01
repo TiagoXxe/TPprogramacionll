@@ -87,6 +87,31 @@ public class AlumnoRepository {
             System.out.println("- " + a);
         }
     }
+    // ==============================
+    //  Listar solo alumnos aprobados
+    // ==============================
+    public void mostrarAprobados() {
+        if (alumnos.isEmpty()) {
+            System.out.println("📭 No hay alumnos cargados.");
+            return;
+        }
+
+        boolean alguno = false;
+        System.out.println("\n📋 ALUMNOS CON AL MENOS UNA MATERIA APROBADA (nota > 6)");
+
+        for (Alumno a : alumnos) {
+            if (a.estaAprobado()) {
+                System.out.println("- " + a);
+                alguno = true;
+            }
+        }
+
+        if (!alguno) {
+            System.out.println("📭 Ningún alumno tiene materias aprobadas todavía.");
+        }
+    }
+
+
 
     public List<Alumno> getAlumnos() {
         return new ArrayList<>(alumnos);
