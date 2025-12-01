@@ -3,10 +3,11 @@ package aplicacion;
 public class Alumno extends Persona {
 
     private String carrera;
+    private int legajo;
 
-    public Alumno(String nombre, String apellido, int legajo, String carrera) {
-        super(nombre, apellido, legajo);
-        this.carrera = carrera;
+    public Alumno(String nombre, String apellido, String dni, int legajo) {
+        super(nombre, apellido, dni);
+        this.legajo = legajo;
     }
 
     public String getCarrera() {

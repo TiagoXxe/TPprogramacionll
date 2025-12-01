@@ -4,12 +4,12 @@ public class Persona {
 
     private String nombre;
     private String apellido;
-    private int legajo;
+    private String dni;
 
-    public Persona(String nombre, String apellido, int legajo) {
+    public Persona(String nombre, String apellido, String  dni) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.legajo = legajo;
+        this.dni = dni;
     }
 
     public String getNombre() {
@@ -20,13 +20,13 @@ public class Persona {
         return apellido;
     }
 
-    public int getLegajo() {
-        return legajo;
+    public int getDni() {
+        return dni;
     }
 
     @Override
     public String toString() {
-        return apellido + ", " + nombre + " (Legajo: " + legajo + ")";
+        return apellido + ", " + nombre + " (Dni: " + dni + ")";
     }
 
 }
