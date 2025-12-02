@@ -12,9 +12,7 @@ public class Menu {
         this.sc = sc;
     }
 
-    // ==========================
-    //  MENÚ PRINCIPAL
-    // ==========================
+  
     public void mostrarMenuPrincipal() {
         int opcion = -1;
 
@@ -28,6 +26,7 @@ public class Menu {
             System.out.println("6. Cargar calificación a un alumno");
             System.out.println("7. Listar alumnos aprobados");
             System.out.println("8. Ver materias y notas de un alumno");
+            System.out.println("9. Mostrar promedio general de notas");
             System.out.println("0. Salir");
             System.out.print("Ingrese una opción: ");
 
@@ -49,6 +48,7 @@ public class Menu {
                 case 6 -> cargarCalificacionAlumno();
                 case 7 -> repo.mostrarAprobados();
                 case 8 -> verMateriasYNotasDeAlumno();
+                case 9 -> repo.mostrarPromedioGeneral();
                 case 0 -> System.out.println("👋 Saliendo del sistema...");
                 default -> System.out.println("⚠ Opción inválida, intente nuevamente.");
             }
@@ -56,9 +56,9 @@ public class Menu {
         } while (opcion != 0);
     }
 
-    // ==========================
+    
     //  OPCIÓN 1: ALTA ALUMNO
-    // ==========================
+    
     private void registrarAlumno() {
         System.out.println("\n🟢 REGISTRAR NUEVO ALUMNO");
 
@@ -74,9 +74,9 @@ public class Menu {
         repo.agregarAlumno(nuevo);
     }
 
-    // ==========================
-    //  OPCIÓN 2: BUSCAR
-    // ==========================
+    
+    //  OPCIÓN 2
+    
     private void buscarAlumno() {
         System.out.println("\n🔎 BUSCAR ALUMNO");
 
@@ -90,9 +90,9 @@ public class Menu {
         }
     }
 
-    // ==========================
-    //  OPCIÓN 3: MODIFICAR
-    // ==========================
+   
+    //  OPCIÓN 3
+    
     private void modificarAlumno() {
         System.out.println("\n✏ MODIFICAR ALUMNO");
 
@@ -114,9 +114,9 @@ public class Menu {
         }
     }
 
-    // ==========================
-    //  OPCIÓN 4: ELIMINAR
-    // ==========================
+    
+    //  OPCIÓN 4
+    
     private void eliminarAlumno() {
         System.out.println("\n🗑 ELIMINAR ALUMNO");
 
@@ -129,9 +129,9 @@ public class Menu {
         }
     }
 
-    // ==========================
-    //  OPCIÓN 6: CARGAR CALIFICACIÓN A UN ALUMNO
-    // ==========================
+    
+    //  OPCIÓN 6
+    
     private void cargarCalificacionAlumno() {
         System.out.println("\n📝 CARGAR CALIFICACIÓN A UN ALUMNO");
 
@@ -155,9 +155,8 @@ public class Menu {
         }
     }
 
-    // ==========================
-    //  OPCIÓN 8: VER MATERIAS Y NOTAS DE UN ALUMNO
-    // ==========================
+    
+    //  OPCIÓN 8
     private void verMateriasYNotasDeAlumno() {
         System.out.println("\n📚 VER MATERIAS Y NOTAS DE UN ALUMNO");
 
@@ -188,9 +187,9 @@ public class Menu {
         }
     }
 
-    // ==========================
-    //  LECTURA ENTERO POSITIVO
-    // ==========================
+    
+    //  LECTURA ENTERO POSITIVO, con validación
+    
     private int leerEnteroPositivo(String mensaje) {
         while (true) {
             System.out.print(mensaje);
@@ -209,9 +208,8 @@ public class Menu {
         }
     }
 
-    // ==========================
-    //  LECTURA DE TEXTO SOLO LETRAS
-    // ==========================
+    //  LECTURA DE TEXTO SOLO LETRAS, con validación
+    
     private String leerTextoSoloLetras(String mensaje) {
         while (true) {
             System.out.print(mensaje);
@@ -241,9 +239,9 @@ public class Menu {
         }
     }
 
-    // ==========================
-    //  LECTURA DE DNI COMO STRING
-    // ==========================
+    
+    //  LECTURA DE DNI COMO STRING, con validación
+    
     private String leerDniComoString(String mensaje) {
         while (true) {
             System.out.print(mensaje);
@@ -277,9 +275,9 @@ public class Menu {
         }
     }
 
-    // ==========================
-    //  LECTURA MATERIA (letras, números y espacios)
-    // ==========================
+    
+    //  LECTURA MATERIA (letras, números por si es una materia 2 y espacios)
+    
     private String leerMateriaValida(String mensaje) {
         while (true) {
             System.out.print(mensaje);
@@ -309,9 +307,9 @@ public class Menu {
         }
     }
 
-    // ==========================
+    
     //  LECTURA NOTA (double 0..10)
-    // ==========================
+   
     private double leerNotaValida(String mensaje) {
         while (true) {
             System.out.print(mensaje);
