@@ -9,7 +9,7 @@ public class Alumno extends Persona implements Comparable<Alumno> {
     private String carrera;
     private int legajo;
 
-    // lista de calificaciones
+    //  lista de calificaciones
     private List<Calificacion> calificaciones = new ArrayList<>();
 
     public Alumno(String nombre, String apellido, String dni, int legajo) {
@@ -33,12 +33,12 @@ public class Alumno extends Persona implements Comparable<Alumno> {
         this.carrera = carrera;
     }
 
-    // agregar una calificación
+    //  agregar una calificación
     public void agregarCalificacion(Calificacion calificacion) {
         calificaciones.add(calificacion);
     }
 
-    // devolver copia de la lista
+    //  devolver copia de la lista (para que nadie la rompa desde afuera)
     public List<Calificacion> getCalificaciones() {
         return new ArrayList<>(calificaciones);
     }
@@ -82,4 +82,4 @@ public class Alumno extends Persona implements Comparable<Alumno> {
         return Objects.hash(legajo);
     }
 }
-
+//  FIN DE Alumno.java

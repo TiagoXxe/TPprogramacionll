@@ -1,9 +1,9 @@
 package aplicacion;
 
 
-// INTERFAZ FUNCIONAL MOSTRABLE
-// Representa un método que "muestra" algo
-// y Obliga a implementar un método
+// = INTERFAZ FUNCIONAL MOSTRABLE
+// = Representa un método que "muestra" algo
+// = Obliga a implementar un método
 
 @FunctionalInterface
 public interface Mostrable {

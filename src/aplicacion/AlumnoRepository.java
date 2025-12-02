@@ -12,11 +12,9 @@ public class AlumnoRepository {
         this.alumnos = new ArrayList<>();
     }
 
-    
     //  C  -> CREATE (agregar)
-    
     public void agregarAlumno(Alumno alumno) {
-        // con esto evitamis legajos duplicados
+        // Evitar legajos duplicados
         for (Alumno a : alumnos) {
             if (a.getLegajo() == alumno.getLegajo()) {
                 System.out.println("⚠ Ya existe un alumno con el legajo " + alumno.getLegajo());
@@ -27,9 +25,7 @@ public class AlumnoRepository {
         System.out.println("✅ Alumno agregado correctamente.");
     }
 
-    
     //  R  -> READ (buscar)
-    
     public Alumno buscarPorLegajo(int legajo) throws AlumnoNoEncontradoException {
         for (Alumno a : alumnos) {
             if (a.getLegajo() == legajo) {
@@ -41,9 +37,7 @@ public class AlumnoRepository {
         );
     }
 
-    
     //  U  -> UPDATE (modificar)
-    
     public void modificarAlumno(int legajo,
                                 String nuevoNombre,
                                 String nuevoApellido,
@@ -60,25 +54,20 @@ public class AlumnoRepository {
         System.out.println("✏ Alumno modificado correctamente.");
     }
 
-    
     //  D  -> DELETE (eliminar)
-    
     public void eliminarPorLegajo(int legajo) throws AlumnoNoEncontradoException {
         Alumno a = buscarPorLegajo(legajo); // si no existe lanza excepción
         alumnos.remove(a);
         System.out.println("🗑 Alumno eliminado correctamente.");
     }
 
-    
     //  Listado
-    
     public void mostrarTodos() {
         if (alumnos.isEmpty()) {
             System.out.println("📭 No hay alumnos cargados.");
             return;
         }
 
-        // Ordenar por legajo (Comparable)
         Collections.sort(alumnos);
 
         System.out.println("\n📋 LISTADO DE ALUMNOS");
@@ -87,9 +76,7 @@ public class AlumnoRepository {
         alumnos.forEach(a -> System.out.println("- " + a));
     }
 
-    
     //  Listar solo alumnos aprobados
-    
     public void mostrarAprobados() {
         if (alumnos.isEmpty()) {
             System.out.println("📭 No hay alumnos cargados.");
@@ -111,32 +98,31 @@ public class AlumnoRepository {
         }
     }
 
-  
     //  Calcular PROMEDIO GENERAL de notas
-    
-public void mostrarPromedioGeneral() {
-    if (alumnos.isEmpty()) {
-        System.out.println("📭 No hay alumnos cargados.");
-        return;
-    }
-
-    double suma = 0;
-    int contador = 0;
-
-    // Recorremos todos los alumnos y TODAS sus calificaciones
-    for (Alumno a : alumnos) {
-        for (Calificacion c : a.getCalificaciones()) {
-            suma += c.getNota();
-            contador++;
+    public void mostrarPromedioGeneral() {
+        if (alumnos.isEmpty()) {
+            System.out.println("📭 No hay alumnos cargados.");
+            return;
         }
+
+        double suma = 0;
+        int contador = 0;
+
+        // Recorremos todos los alumnos y TODAS sus calificaciones
+        for (Alumno a : alumnos) {
+            for (Calificacion c : a.getCalificaciones()) {
+                suma += c.getNota();
+                contador++;
+            }
+        }
+
+        if (contador == 0) {
+            System.out.println("📭 No hay calificaciones cargadas todavía.");
+            return;
+        }
+
+        double promedio = suma / contador;
+        System.out.printf("📊 Promedio general de notas: %.2f%n", promedio);
     }
 
-    if (contador == 0) {
-        System.out.println("📭 No hay calificaciones cargadas todavía.");
-        return;
-    }
-
-    double promedio = suma / contador;
-    System.out.printf("📊 Promedio general de notas: %.2f%n", promedio);
-}
-}
+} 

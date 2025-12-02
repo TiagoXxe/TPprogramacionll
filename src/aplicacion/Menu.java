@@ -12,7 +12,7 @@ public class Menu {
         this.sc = sc;
     }
 
-  
+   //  MENÚ PRINCIPAL
     public void mostrarMenuPrincipal() {
         int opcion = -1;
 
@@ -75,7 +75,7 @@ public class Menu {
     }
 
     
-    //  OPCIÓN 2
+    //  OPCIÓN 2: BUSCAR
     
     private void buscarAlumno() {
         System.out.println("\n🔎 BUSCAR ALUMNO");
@@ -90,8 +90,8 @@ public class Menu {
         }
     }
 
-   
-    //  OPCIÓN 3
+    
+    //  OPCIÓN 3: MODIFICAR
     
     private void modificarAlumno() {
         System.out.println("\n✏ MODIFICAR ALUMNO");
@@ -115,8 +115,8 @@ public class Menu {
     }
 
     
-    //  OPCIÓN 4
-    
+    //  OPCIÓN 4: ELIMINAR
+   
     private void eliminarAlumno() {
         System.out.println("\n🗑 ELIMINAR ALUMNO");
 
@@ -129,8 +129,7 @@ public class Menu {
         }
     }
 
-    
-    //  OPCIÓN 6
+    //  OPCIÓN 6: CARGAR CALIFICACIÓN A UN ALUMNO
     
     private void cargarCalificacionAlumno() {
         System.out.println("\n📝 CARGAR CALIFICACIÓN A UN ALUMNO");
@@ -141,7 +140,6 @@ public class Menu {
             Alumno alumno = repo.buscarPorLegajo(legajo);
             System.out.println("Alumno encontrado: " + alumno);
 
-            // mensaje limpio:
             String materia = leerMateriaValida("Materia: ");
             double nota = leerNotaValida("Nota (0 a 10, puede ser decimal): ");
 
@@ -156,7 +154,8 @@ public class Menu {
     }
 
     
-    //  OPCIÓN 8
+    //  OPCIÓN 8: VER MATERIAS Y NOTAS DE UN ALUMNO
+    
     private void verMateriasYNotasDeAlumno() {
         System.out.println("\n📚 VER MATERIAS Y NOTAS DE UN ALUMNO");
 
@@ -188,7 +187,7 @@ public class Menu {
     }
 
     
-    //  LECTURA ENTERO POSITIVO, con validación
+    //  LECTURA ENTERO POSITIVO
     
     private int leerEnteroPositivo(String mensaje) {
         while (true) {
@@ -208,7 +207,8 @@ public class Menu {
         }
     }
 
-    //  LECTURA DE TEXTO SOLO LETRAS, con validación
+    
+    //  LECTURA DE TEXTO SOLO LETRAS
     
     private String leerTextoSoloLetras(String mensaje) {
         while (true) {
@@ -223,7 +223,6 @@ public class Menu {
             boolean valido = true;
             for (int i = 0; i < texto.length(); i++) {
                 char c = texto.charAt(i);
-                // Aceptamos letras y espacio
                 if (!Character.isLetter(c) && c != ' ') {
                     valido = false;
                     break;
@@ -239,9 +238,8 @@ public class Menu {
         }
     }
 
-    
-    //  LECTURA DE DNI COMO STRING, con validación
-    
+    //  LECTURA DE DNI COMO STRING
+   
     private String leerDniComoString(String mensaje) {
         while (true) {
             System.out.print(mensaje);
@@ -265,7 +263,6 @@ public class Menu {
                 continue;
             }
 
-            // Opcional: validar longitud (7 u 8 dígitos)
             if (dni.length() < 7 || dni.length() > 8) {
                 System.out.println("⚠ El DNI debe tener entre 7 y 8 dígitos.");
                 continue;
@@ -275,8 +272,7 @@ public class Menu {
         }
     }
 
-    
-    //  LECTURA MATERIA (letras, números por si es una materia 2 y espacios)
+    //  LECTURA MATERIA
     
     private String leerMateriaValida(String mensaje) {
         while (true) {
@@ -291,7 +287,6 @@ public class Menu {
             boolean valido = true;
             for (int i = 0; i < materia.length(); i++) {
                 char c = materia.charAt(i);
-                // Aceptamos letras, dígitos y espacio
                 if (!Character.isLetter(c) && !Character.isDigit(c) && c != ' ') {
                     valido = false;
                     break;
@@ -309,13 +304,12 @@ public class Menu {
 
     
     //  LECTURA NOTA (double 0..10)
-   
+    
     private double leerNotaValida(String mensaje) {
         while (true) {
             System.out.print(mensaje);
             String input = sc.nextLine().trim();
 
-            // Permitir coma o punto
             input = input.replace(',', '.');
 
             try {

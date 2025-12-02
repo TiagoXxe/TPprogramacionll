@@ -6,3 +6,4 @@ public class AlumnoNoEncontradoException extends Exception {
         super(mensaje);
     }
 }
+//  FIN DE AlumnoNoEncontradoException.java
